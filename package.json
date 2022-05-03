@@ -1,0 +1,23 @@
+{
+  "name": "mern-ecommerce-from-scratch",
+  "version": "1.0.0",
+  "description": "MERN Shopping Cart App",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/larabk/MERN-eCommerce-Course.git"
+  },
+  "author": "Lara Bartol-Kuhlman",
+  "license": "MIT",
+
+  "bugs": {
+    "url": "https://github.com/larabk/MERN-eCommerce-Course/issues"
+  },
+  "homepage": "https://github.com/larabk/MERN-eCommerce-Course#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
