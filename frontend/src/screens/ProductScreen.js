@@ -7,16 +7,18 @@ import Rating from '../components/Rating'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 
-const ProductScreen = (history) => {
-  const [qty, setQty] = useState(0)
+const ProductScreen = () => {
+  const [qty, setQty] = useState(1)
+  
   const {id} = useParams()
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+  
   // const [product, setProduct] = useState({})
     // const product = products.find( (p) => p._id === params.id)
-    const dispatch = useDispatch()
-
-    const productDetails = useSelector(state => state.productDetails)
-    const { loading, error, product } = productDetails
+    
+  const productDetails = useSelector(state => state.productDetails)
+  const { loading, error, product } = productDetails
 
     useEffect(() => {
       dispatch(listProductDetails(id))
