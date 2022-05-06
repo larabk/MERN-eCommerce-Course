@@ -5,20 +5,17 @@ import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
 import Message from '../components/Message'
 import { addToCart, removeFromCart } from '../actions/cartActions'
 
-    const CartScreen = (location) => {
-    // NO MATCH
-    // const productId = params.id
+const CartScreen = () => {
+    const { id } = useParams()
+    
+    // const qty = location.search ? Number(location.search.split('=')[1]) : 1
+    const qty = new URLSearchParams(useLocation().search).get('qty')
 
-  const { id } = useParams()
-  
-  // const qty = location.search ? Number(location.search.split('=')[1]) : 1
-  const qty = new URLSearchParams(useLocation().search).get('qty')
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
 
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-
-  const cart = useSelector((state) => state.cart)
-  const { cartItems } = cart
+    const cart = useSelector((state) => state.cart)
+    const { cartItems } = cart
 
   useEffect(() => {
     if (id) {
