@@ -27,15 +27,14 @@ const OrderScreen = () => {
     }
 
     useEffect(() => {
-        dispatch(getOrderDetails(id))
-    }, [])
+        if(!order || order._id !== id) {
+            dispatch(getOrderDetails(id))
+        }
+    }, [dispatch, order, id]) 
 
-
-    // useEffect(() => {
-    //     if (!userInfo) {
-    //       navigate('/login')
-    // }
-    //  })
+        // useEffect(() => {
+    //     dispatch(getOrderDetails(id))
+    // }, [])
 
     return loading ? <Loader /> : error ? <Message variant='danger'>
         {error}</Message> : <>
