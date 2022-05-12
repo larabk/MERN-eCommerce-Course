@@ -1,5 +1,8 @@
 import axios from 'axios'
-import { USER_DETAILS_FAIL, USER_DETAILS_REQUEST, USER_DETAILS_SUCCESS, USER_LOGIN_FAIL, 
+import { USER_DETAILS_FAIL, 
+        USER_DETAILS_REQUEST, 
+        USER_DETAILS_SUCCESS, 
+        USER_LOGIN_FAIL, 
         USER_LOGIN_REQUEST, 
         USER_LOGIN_SUCCESS, 
         USER_LOGOUT,
@@ -8,7 +11,7 @@ import { USER_DETAILS_FAIL, USER_DETAILS_REQUEST, USER_DETAILS_SUCCESS, USER_LOG
         USER_REGISTER_SUCCESS,
         USER_UPDATE_PROFILE_FAIL,
         USER_UPDATE_PROFILE_REQUEST,
-        USER_UPDATE_PROFILE_SUCCESS} 
+        USER_UPDATE_PROFILE_SUCCESS } 
         from '../constants/userConstants'
 
 
@@ -20,13 +23,12 @@ export const login = (email, password) => async (dispatch) => {
 
         const config = {
             headers: {
-            
                 'Content-Type': 'application/json'
             }
         }
 
         const { data } = await axios.post('/api/users/login', 
-        { email, password}, config)
+        { email, password }, config)
         dispatch({
             type: USER_LOGIN_SUCCESS,
             payload: data
