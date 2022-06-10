@@ -9,13 +9,26 @@ import { listUsers } from '../actions/userActions'
 
 const UserListScreen = () => {
     const dispatch = useDispatch()
+    const location = useLocation()
+    const navigate = useNavigate()
 
     const userList = useSelector(state => state.userList)
     const { loading, error, users } = userList
 
+    const userLogin = useSelector(state => state.userLogin)
+    const { userInfo } = userLogin
+
+    const redirect = new URLSearchParams(location.search).get('redirect') ?
+    new URLSearchParams(location.search).get('redirect') : '/login'
+
     useEffect(() => {
-        dispatch(listUsers())
-    }, [dispatch])
+        if(userInfo && userInfo.isAdmin) {
+            dispatch(listUsers())
+        } else {
+            navigate(redirect)
+        }
+        // dispatch(listUsers())
+    }, [dispatch, navigate])
 
     const deleteHandler = (id) => {
         console.log('delete')

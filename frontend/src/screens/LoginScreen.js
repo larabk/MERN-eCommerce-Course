@@ -8,7 +8,7 @@ import FormContainer from '../components/FormContainer'
 import { login } from '../actions/userActions'
 
 const LoginScreen = () => {
-    const location = useLocation();
+    const location = useLocation()
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
