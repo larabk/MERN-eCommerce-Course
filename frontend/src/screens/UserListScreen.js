@@ -5,7 +5,7 @@ import { Table, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
-import { listUsers } from '../actions/userActions'
+import { listUsers, deleteUser } from '../actions/userActions'
 
 const UserListScreen = () => {
     const dispatch = useDispatch()
@@ -18,6 +18,9 @@ const UserListScreen = () => {
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
 
+    const userDelete = useSelector(state => state.userDelete)
+    const { success:successDelete } = userDelete
+
     const redirect = new URLSearchParams(location.search).get('redirect') ?
     new URLSearchParams(location.search).get('redirect') : '/login'
 
@@ -28,10 +31,12 @@ const UserListScreen = () => {
             navigate(redirect)
         }
         // dispatch(listUsers())
-    }, [dispatch, navigate])
+    }, [dispatch, navigate, successDelete, userInfo])
 
     const deleteHandler = (id) => {
-        console.log('delete')
+        if (window.confirm('Are you sure?')) {
+            dispatch(deleteUser(id))
+        }
     }
     
 
@@ -75,7 +80,7 @@ const UserListScreen = () => {
                                 </LinkContainer> 
                                 <Button 
                                     variant='danger' 
-                                    classname='btn-sm' 
+                                    className='btn-sm' 
                                     onClick={() => deleteHandler(user._id)}>
                                         <i className='fas fa-trash'></i>
                                     </Button>
