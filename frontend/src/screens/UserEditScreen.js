@@ -6,6 +6,7 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import FormContainer from '../components/FormContainer'
 import { getUserDetails, updateUser } from '../actions/userActions'
+import { USER_UPDATE_RESET } from '../constants/userConstants'
 
 const UserEditScreen = () => {
     
@@ -25,18 +26,31 @@ const UserEditScreen = () => {
     const userDetails = useSelector( (state) => state.userDetails)
     const { loading, error, user } = userDetails
 
+    const userUpdate = useSelector( (state) => state.userUpdate)
+    const { loading: loadingUpdate, error: errorUpdate, success: successUpdate } = userUpdate
+
+    // const redirectAdmin = new URLSearchParams(location.search).get('redirectAdmin') ?
+    // new URLSearchParams(location.search).get('redirectAdmin') : '/admin/userList'
+
     useEffect(() => {
-        if(!user.name || user._id !== id) {
-            dispatch(getUserDetails(id))
+        if(successUpdate) {
+            dispatch({ type: USER_UPDATE_RESET })
+            navigate(redirect)
         } else {
-            setName(user.name)
-            setEmail(user.email)
-            setIsAdmin(user.isAdmin)
+            if(!user.name || user._id !== id) {
+                dispatch(getUserDetails(id))
+            } else {
+                setName(user.name)
+                setEmail(user.email)
+                setIsAdmin(user.isAdmin)
+            }
         }
-    }, [dispatch, id, user])
+
+    }, [dispatch, redirect, navigate, id, user, successUpdate])
 
     const submitHandler = (e) => {
         e.preventDefault()
+        dispatch(updateUser({ _id: userDetails, name, email, isAdmin }))
         
     }
   
@@ -47,6 +61,8 @@ const UserEditScreen = () => {
             </Link>
         <FormContainer>
         <h1>Edit User</h1>
+        {loadingUpdate && <Loader />}
+        {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
         {loading ? <Loader /> : error ? <Message variant='danger'>
             {error}</Message> : (
                  <Form onSubmit={submitHandler}>
