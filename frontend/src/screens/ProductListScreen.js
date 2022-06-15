@@ -33,6 +33,9 @@ const ProductListScreen = () => {
     const redirect = new URLSearchParams(location.search).get('redirect') ?
     new URLSearchParams(location.search).get('redirect') : '/login'
 
+    const redirectCreate = new URLSearchParams(location.search).get('redirectCreate') ?
+    new URLSearchParams(location.search).get('redirectCreate') : '/admin/product/${createdProduct._id}/edit'
+
     useEffect(() => {
         dispatch({ type: PRODUCT_CREATE_RESET })
 
@@ -40,7 +43,7 @@ const ProductListScreen = () => {
             navigate(redirect)
         }
         if(successCreate) {
-            navigate(`/admin/product/${createProduct._id}/edit`)
+            navigate(redirectCreate)
         } else {
             dispatch(listProducts())
         }
