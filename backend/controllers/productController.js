@@ -95,7 +95,6 @@ const updateProduct = asyncHandler(async (req, res) => {
     res.status(201).json(product)
 })
 
-
 export {
     getProducts,
     getProductById,

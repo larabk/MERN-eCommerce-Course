@@ -153,3 +153,4 @@ export const updateProduct = (product) => async (dispatch, getState) => {
         })
     }
 }
+
