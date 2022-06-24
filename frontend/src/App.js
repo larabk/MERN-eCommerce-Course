@@ -41,7 +41,8 @@ const App = () => {
             <Route path="/admin/productlist" element={<ProductListScreen />} />
             <Route path="/admin/product/:id/edit" element={<ProductEditScreen />} />
             <Route path="/admin/orderlist" element={<OrderListScreen />} />
-            <Route path="/" element={<HomeScreen />} />
+            <Route path="/" element={<HomeScreen />} exact />
+            <Route path="/search/:keyword" element={<HomeScreen />} />
           </Routes>
         </Container>
       </main>
