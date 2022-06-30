@@ -7,7 +7,7 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { listProducts, deleteProduct, createProduct } from '../actions/productActions'
 import { PRODUCT_CREATE_RESET } from '../constants/productConstants'
-import { Paginate } from '../components/Paginate'
+import Paginate from '../components/Paginate'
 
 const ProductListScreen = () => {
     const dispatch = useDispatch()
