@@ -12,7 +12,7 @@ const SearchBox = () => {
             navigate('/')
         }
         }
-    }
+    
 
   return (
       <>
@@ -32,6 +32,6 @@ const SearchBox = () => {
       
     </>
   )
-  }
+}
 
 export default SearchBox
